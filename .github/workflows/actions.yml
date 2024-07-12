@@ -42,12 +42,15 @@ jobs:
       - name: Build with Maven
         run: mvn package -Dmaven.test.skip
 
+      - name: Compress the JAR file
+        run: zip -r target/app.zip target/*.jar
+
       - name: Set commit_id output
         id: commit
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Upload artifact to AWS S3
-        run: aws s3 cp target/*.jar s3://bac-utils/build-artifacts/
+        run: aws s3 cp target/app.zip s3://bac-utils/build-artifacts/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -69,25 +72,28 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Download artifacts from AWS S3
+      - name: Create target directory
+        run: mkdir -p target
+
+      - name: Download and unzip artifact from AWS S3
         run: |
-          mkdir -p target
-          aws s3 cp s3://bac-utils/build-artifacts/ target/ --recursive
-          ls -l target
+         mkdir -p target
+         aws s3 cp s3://bac-utils/build-artifacts/app.zip target/
+         unzip target/app.zip -d target/
+         ls -l target
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
 
-
       - name: Docker build
         run: docker build --no-cache -t ${{ env.SERVICE_NAME }} .
 
       - name: Docker tag
-        run: docker tag ${{ env.SERVICE_NAME }}:latest ${{ secrets.ECR_ENDPOINT }}:${{ needs.build.outputs.commit_id }}
+        run: docker tag ${{ env.SERVICE_NAME }}:latest 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo:${{ needs.build.outputs.commit_id }}
 
       - name: Docker ECR login
-        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.ECR_ENDPOINT }}
+        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Docker push
-        run: docker push ${{ secrets.ECR_ENDPOINT }}:${{ needs.build.outputs.commit_id }}
+        run: docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo:${{ needs.build.outputs.commit_id }}
