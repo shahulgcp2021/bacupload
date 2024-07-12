@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity EnergySource.
+    -->
+    <changeSet id="20240612100505-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="energy_source"
+                                 constraintName="fk_energy_source__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="site_id"
+                                 baseTableName="energy_source"
+                                 constraintName="fk_energy_source__site_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="site"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="company_public_emission_id"
+                                 baseTableName="energy_source"
+                                 constraintName="fk_energy_source__company_public_emission_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company_public_emission"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="default_averageef_id"
+                                 baseTableName="energy_source"
+                                 constraintName="fk_energy_source__default_averageef_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="default_average_ef"
+                                 onDelete="CASCADE"
+                                 />
+    </changeSet>
+</databaseChangeLog>

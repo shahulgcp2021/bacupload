@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity BillofMaterial.
+    -->
+    <changeSet id="20240612100457-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="billof_material"
+                                 constraintName="fk_billof_material__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="billof_material"
+                                 constraintName="fk_billof_material__product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"
+                                 onDelete="CASCADE"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="component_id"
+                                 baseTableName="billof_material"
+                                 constraintName="fk_billof_material__component_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"
+                                 onDelete="CASCADE"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="unit_of_measure_id"
+                                 baseTableName="billof_material"
+                                 constraintName="fk_billof_material__unit_of_measure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit_of_measure"
+                                 onDelete="CASCADE"
+        />
+        <addUniqueConstraint
+            columnNames="product_id, component_id"
+            constraintName="unique_cons_product"
+            tableName="billof_material"
+        />
+    </changeSet>
+</databaseChangeLog>

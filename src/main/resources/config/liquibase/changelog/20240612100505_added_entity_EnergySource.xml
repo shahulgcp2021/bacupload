@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity EnergySource.
+    -->
+    <changeSet id="20240612100505-1" author="bacutidev">
+        <createTable tableName="energy_source">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="energy_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="supplier" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="co_2_emission_factor" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="upstream_co_2_ef" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ef_units" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="source_for_ef" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_renewable_src" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="site_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_public_emission_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="default_averageef_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- Create the sequence for the primary key -->
+    <changeSet id="20240612100505-3" author="bacutidev">
+        <createSequence sequenceName="energy_source_id_seq"
+                        startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <!-- Set the default value of the id column to use the sequence -->
+    <changeSet id="20240612100505-4" author="bacutidev">
+        <addDefaultValue tableName="energy_source" columnName="id"
+                         defaultValueSequenceNext="energy_source_id_seq"/>
+    </changeSet>
+</databaseChangeLog>

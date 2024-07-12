@@ -1,0 +1,37 @@
+# Maven target directory
+#target/
+
+# Node.js modules directory
+node_modules/
+
+# Maven wrapper files
+.mvn/
+mvnw
+mvnw.cmd
+
+# IDE and editor directories/files
+.idea/
+*.iml
+
+# Docker configuration files (not needed in the image)
+.dockerignore
+Dockerfile
+
+# Git related files
+.git/
+.gitattributes
+.gitignore
+
+# Configuration files for various tools (optional, include if not needed in the image)
+.editorconfig
+.prettierrc
+.prettierignore
+.lintstagedrc.cjs
+checkstyle.xml
+yo-rc.json
+
+# Ignore other config files not necessary for the runtime
+README.md
+sonar-project.properties
+package.json
+package-lock.json

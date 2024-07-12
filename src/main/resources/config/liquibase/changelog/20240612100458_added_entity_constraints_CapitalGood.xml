@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity CapitalGood.
+    -->
+    <changeSet id="20240612100458-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="capital_good"
+                                 constraintName="fk_capital_good__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="site_id"
+                                 baseTableName="capital_good"
+                                 constraintName="fk_capital_good__site_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="site"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="emission_db_id"
+                                 baseTableName="capital_good"
+                                 constraintName="fk_capital_good__emission_db_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="default_average_ef"
+                                 onDelete="CASCADE"
+                                 />
+    </changeSet>
+</databaseChangeLog>

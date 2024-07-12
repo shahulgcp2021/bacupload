@@ -1,0 +1,23 @@
+name: Cleanup old artifacts
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List all artifacts
+        run: |
+          artifacts=$(gh api -H "Accept: application/vnd.github.v3+json" /repos/${{ github.repository }}/actions/artifacts | jq -r '.artifacts | .[] | select(.created_at < now - interval "7 days") | .id')
+          echo "Artifacts to delete: $artifacts"
+          echo $artifacts > artifacts.txt
+
+      - name: Delete old artifacts
+        run: |
+          artifacts=$(cat artifacts.txt)
+          for artifact in $artifacts; do
+            echo "Deleting artifact $artifact"
+            gh api -X DELETE -H "Accept: application/vnd.github.v3+json" /repos/${{ github.repository }}/actions/artifacts/$artifact
+          done

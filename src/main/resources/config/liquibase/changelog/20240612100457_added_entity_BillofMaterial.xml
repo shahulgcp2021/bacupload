@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!-- Create the sequence for the primary key -->
+    <changeSet id="20240612100457-1" author="bacutidev">
+        <createSequence sequenceName="billof_material_id_seq"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
+
+    <!-- Create the table and use the sequence for the id column -->
+    <changeSet id="20240612100457-2" author="bacutidev">
+        <createTable tableName="billof_material">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="quantity" type="decimal(21,2)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="yield_factor" type="decimal(21,2)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="component_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="unit_of_measure_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Set the default value of the id column to use the sequence -->
+    <changeSet id="20240612100457-3" author="bacutidev">
+        <addDefaultValue tableName="billof_material" columnName="id" defaultValueSequenceNext="billof_material_id_seq"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240612100519-3" author="bacutidev">
+        <createSequence sequenceName="supplier_id_seq"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="20240612100519-1" author="bacutidev">
+        <createTable tableName="supplier">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="supplier_name" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_supplier__supplier_name" />
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="website" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="country" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sustainability_contact_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sustainability_contact_email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240612100457-2" author="bacutidev">
+        <modifyDataType tableName="supplier" columnName="description" newDataType="varchar(1000)"/>
+    </changeSet>
+
+    <changeSet id="20240612100457-4" author="bacutidev">
+        <addDefaultValue tableName="supplier" columnName="id" defaultValueSequenceNext="supplier_id_seq"/>
+    </changeSet>
+
+</databaseChangeLog>

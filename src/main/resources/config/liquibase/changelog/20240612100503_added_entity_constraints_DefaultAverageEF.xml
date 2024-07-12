@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity DefaultAverageEF.
+    -->
+    <changeSet id="20240612100503-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="unit_of_measure_id"
+                                 baseTableName="default_average_ef"
+                                 constraintName="fk_default_average_ef__unit_of_measure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit_of_measure"
+                                 onDelete="CASCADE"
+                                 />
+    </changeSet>
+</databaseChangeLog>

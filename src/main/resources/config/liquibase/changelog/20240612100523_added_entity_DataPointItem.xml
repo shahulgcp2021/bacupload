@@ -1,0 +1,103 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="data-point-item" author="bacutidev">
+        <createTable tableName="data_point_item">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="item" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="upload_status" type="varchar(255)" defaultValue="NOT_UPLOADED">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+        <changeSet id="data-point-item-values" author="bacutidev">
+            <insert tableName="data_point_item">
+                <column name="id" value="1" />
+                <column name="item" value="Site Details" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="2" />
+                <column name="item" value="Total Energy Usage" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="3" />
+                <column name="item" value="Production Volume" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="4" />
+                <column name="item" value="Energy Sources" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="5" />
+                <column name="item" value="Items" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="6" />
+                <column name="item" value="Bill Of Materials" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="7" />
+                <column name="item" value="Routing / Process Details" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="8" />
+                <column name="item" value="Machine Usage" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="9" />
+                <column name="item" value="Machines" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="10" />
+                <column name="item" value="Supplier Mix" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="11" />
+                <column name="item" value="Procurement Volumes" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="12" />
+                <column name="item" value="Suppliers" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="13" />
+                <column name="item" value="Capital Goods" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="14" />
+                <column name="item" value="Raw Material Shipment" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="15" />
+                <column name="item" value="Finished Goods Shipment" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="16" />
+                <column name="item" value="Internal Shipment" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="17" />
+                <column name="item" value="Business Travel" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="18" />
+                <column name="item" value="Employee Commute" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="19" />
+                <column name="item" value="Product Usage Details" />
+            </insert>
+            <insert tableName="data_point_item">
+                <column name="id" value="20" />
+                <column name="item" value="Waste Disposal" />
+            </insert>
+        </changeSet>
+</databaseChangeLog>

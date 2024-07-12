@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity CarbonPricePayment.
+    -->
+    <changeSet id="20240612100459-1" author="bacutidev">
+        <createTable tableName="carbon_price_payment">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="payment_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="currency" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="eur_fx_rate" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount_in_eur" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="emission_from_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="emission_to_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="form_of_carbon_price" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_emission_by_price" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="form_of_rebate" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_emission_by_rebate" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="site_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- -needle-liquibase-add-changeset -  will add changesets here -->
+
+</databaseChangeLog>

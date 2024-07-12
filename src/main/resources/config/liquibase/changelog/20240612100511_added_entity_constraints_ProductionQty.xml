@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity ProductionQty.
+    -->
+    <changeSet id="20240612100511-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="production_qty"
+                                 constraintName="fk_production_qty__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="site_id"
+                                 baseTableName="production_qty"
+                                 constraintName="fk_production_qty__site_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="site"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="production_qty"
+                                 constraintName="fk_production_qty__product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"
+                                 onDelete="CASCADE"
+                                 />
+
+    </changeSet>
+    <changeSet id="20240612100511-4" author="bacutidev">
+        <addForeignKeyConstraint baseColumnNames="unit_of_measure_id"
+                                 baseTableName="production_qty"
+                                 constraintName="fk_production_qty__unit_of_measure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit_of_measure"
+                                 onDelete="CASCADE"
+        />
+    </changeSet>
+</databaseChangeLog>

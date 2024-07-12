@@ -1,0 +1,85 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="data_point" author="bacutidev">
+        <createTable tableName="data_point">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(500)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_selected" type="varchar(255)" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="operation" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="data-point-values" author="bacutidev">
+        <insert tableName="data_point">
+            <column name="id" value="1" />
+            <column name="name" value="Manufacture products" />
+            <column name="description" value="If your company manufactures products, we will ask for data related to manufacturing e.g., production volumes, product details." />
+            <column name="is_selected" value="true" />
+            <column name="operation" value="My Operations" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="2" />
+            <column name="name" value="Estimate your emissions more accurately using your routing/process?" />
+            <column name="description" value="Bacuti can use proprietary AI/ML algorithms to get better estimates of product level emissions. To do so, we will ask for additional data such as process steps, machines etc." />
+            <column name="operation" value="My Operations" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="3" />
+            <column name="name" value="Make large purchases?" />
+            <column name="description" value="All goods and services that your company purchases. All raw materials used in production go here." />
+            <column name="operation" value="My Supply Chain" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="4" />
+            <column name="name" value="Own significant equipment?" />
+            <column name="description" value="Large capital equipments that are used in your operations. For example, production machinery, testing equipment." />
+            <column name="operation" value="My Supply Chain" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="5" />
+            <column name="name" value="Transport raw materials?" />
+            <column name="description" value="If you are responsible (or pay) for transporting raw materials from your supplier to your Sites." />
+            <column name="operation" value="My Supply Chain" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="6" />
+            <column name="name" value="Ship finished products?" />
+            <column name="description" value="If you are responsible (or pay) for transporting finished products to your customers." />
+            <column name="operation" value="My Supply Chain" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="7" />
+            <column name="name" value="Move other items?" />
+            <column name="description" value="This includes all transportation that you do internally within your operations and not included in the categories above." />
+            <column name="operation" value="My Supply Chain" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="8" />
+            <column name="name" value="Track employee travel emissions?" />
+            <column name="description" value="We will ask you to estimate commute as well as business travel activity." />
+            <column name="operation" value="My Supply Chain" />
+        </insert>
+        <insert tableName="data_point">
+            <column name="id" value="9" />
+            <column name="name" value="Understand product usage and disposal?" />
+            <column name="description" value="If you have visibility into or control over how your product is used by the end customer and then disposed." />
+            <column name="operation" value="My Supply Chain" />
+        </insert>
+    </changeSet>
+</databaseChangeLog>

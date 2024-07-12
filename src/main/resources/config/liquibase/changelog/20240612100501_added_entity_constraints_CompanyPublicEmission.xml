@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity CompanyPublicEmission.
+    -->
+    <changeSet id="20240612100501-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="revenue_unit_of_measure_id"
+                                 baseTableName="company_public_emission"
+                                 constraintName="fk_company_public_emission__revenue_unit_of_measure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit_of_measure"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="emissions_unit_of_measure_id"
+                                 baseTableName="company_public_emission"
+                                 constraintName="fk_company_public_emission__emissions_unit_of_measure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit_of_measure"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="emission_intensity_unit_of_measure_id"
+                                 baseTableName="company_public_emission"
+                                 constraintName="fk_company_public_emission__emission_intensity_unit_of_me_1d_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit_of_measure"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="activitylevel_unit_of_measure_id"
+                                 baseTableName="company_public_emission"
+                                 constraintName="fk_company_public_emission__activitylevel_unit_of_measure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit_of_measure"
+                                 onDelete="CASCADE"
+                                 />
+    </changeSet>
+</databaseChangeLog>

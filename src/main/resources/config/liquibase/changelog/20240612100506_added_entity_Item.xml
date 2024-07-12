@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240612100506-1" author="bacutidev">
+        <createSequence sequenceName="item_id_seq"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
+    <!--
+        Added the entity Item.
+    -->
+    <changeSet id="20240612100506-2" author="bacutidev">
+        <createTable tableName="item">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="item_name" type="varchar(1000)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_item__item_name" />
+            </column>
+            <column name="description" type="varchar(1000)">
+                <constraints nullable="true" />
+            </column>
+            <column name="item_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="item_category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="purchased_item" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="cbam_impacted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="cn_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cn_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_mn" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_cr" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_ni" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_carbon" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_other_alloys" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_other_materials" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="percent_preconsumer_scrap" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="scrap_per_item" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="aggregated_goods_category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ef_units" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ef_scaling_factor" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="supplier_emission_multipler" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="default_averageef_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="unit_of_measure_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- Set the default value of the id column to use the sequence -->
+    <changeSet id="20240612100506-3" author="bacutidev">
+        <addDefaultValue tableName="item" columnName="id" defaultValueSequenceNext="item_id_seq"/>
+    </changeSet>
+
+</databaseChangeLog>

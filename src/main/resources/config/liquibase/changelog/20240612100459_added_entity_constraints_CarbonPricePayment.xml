@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity CarbonPricePayment.
+    -->
+    <changeSet id="20240612100459-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="carbon_price_payment"
+                                 constraintName="fk_carbon_price_payment__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="site_id"
+                                 baseTableName="carbon_price_payment"
+                                 constraintName="fk_carbon_price_payment__site_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="site"
+                                 onDelete="CASCADE"
+                                 />
+    </changeSet>
+</databaseChangeLog>

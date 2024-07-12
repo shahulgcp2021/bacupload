@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity CapitalGood.
+    -->
+    <changeSet id="20240612100458-1" author="bacutidev">
+        <createTable tableName="capital_good">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="asset_name" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_capital_good__asset_name" />
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="supplier" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="purchase_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="purchase_price" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="useful_life" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_units" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="scaling_factor" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="site_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="emission_db_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- -needle-liquibase-add-changeset -  will add changesets here -->
+</databaseChangeLog>

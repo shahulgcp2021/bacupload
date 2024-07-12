@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity ItemSupplier.
+    -->
+    <changeSet id="20240612100508-2" author="bacutidev">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="item_supplier"
+                                 constraintName="fk_item_supplier__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"
+                                 onDelete="CASCADE"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="item_id"
+                                 baseTableName="item_supplier"
+                                 constraintName="fk_item_supplier__item_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"
+                                 onDelete="CASCADE"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="supplier_id"
+                                 baseTableName="item_supplier"
+                                 constraintName="fk_item_supplier__supplier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="supplier"
+                                 onDelete="CASCADE"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="company_public_emission_id"
+                                 baseTableName="item_supplier"
+                                 constraintName="fk_item_supplier__company_public_emission_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company_public_emission"
+                                 onDelete="CASCADE"
+        />
+        <addUniqueConstraint
+            columnNames="item_id, supplier_id"
+            constraintName="unique_cons_item_supplier"
+            tableName="item_supplier"
+        />
+
+    </changeSet>
+</databaseChangeLog>

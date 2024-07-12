@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity EmployeeTravelAvg.
+    -->
+    <changeSet id="20240612100504-1" author="bacutidev">
+        <createTable tableName="employee_travel_avg">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="travel_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="travel_mode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="period_from" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="period_to" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="pct_employees" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="commute_days_per_week" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pct_days_travelled" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="avg_trips_in_period" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="avg_travel_distance_in_km" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="avg_hotel_stay_days_per_trip" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="site_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- -needle-liquibase-add-changeset -  will add changesets here -->
+</databaseChangeLog>

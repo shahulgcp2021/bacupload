@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!-- Create the sequence for the primary key -->
+    <changeSet id="20240612100500-1" author="bacutidev">
+        <createSequence sequenceName="company_id_seq"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
+    <!--
+        Added the entity Company.
+    -->
+    <changeSet id="20240612100500-2" author="bacutidev">
+        <createTable tableName="company">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_company__company_name" />
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="industry" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="country" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="industry_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admin" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="domain" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="bacuti_caps_enabled" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="image_url" type="varchar">
+            </column>
+            <column name="image_content_type" type="varchar(255)">
+            </column>
+            <column name="cbam_impacted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- Set the default value of the id column to use the sequence -->
+    <changeSet id="20240612100500-3" author="bacutidev">
+        <addDefaultValue tableName="company" columnName="id" defaultValueSequenceNext="company_id_seq"/>
+    </changeSet>
+
+</databaseChangeLog>

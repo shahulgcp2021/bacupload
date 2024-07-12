@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity ItemSupplier.
+    -->
+    <changeSet id="20240612100508-1" author="bacutidev">
+        <createTable tableName="item_supplier">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="supplier_own_item" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="supplier_mix" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="supplier_emission_multiplier" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_units" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_scaling_factor" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="item_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="supplier_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_public_emission_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- Create the sequence for the primary key -->
+    <changeSet id="20240612100508-3" author="bacutidev">
+        <createSequence sequenceName="item_supplier_id_seq"
+                        startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <!-- Set the default value of the id column to use the sequence -->
+    <changeSet id="20240612100508-4" author="bacutidev">
+        <addDefaultValue tableName="item_supplier" columnName="id"
+                         defaultValueSequenceNext="item_supplier_id_seq"/>
+    </changeSet>
+</databaseChangeLog>

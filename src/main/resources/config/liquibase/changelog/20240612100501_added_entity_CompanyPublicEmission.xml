@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity CompanyPublicEmission.
+    -->
+    <changeSet id="20240612100501-1" author="bacutidev">
+        <createTable tableName="company_public_emission">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reporting_company" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="reporting_year" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="revenue" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="total_energy_in_mwh" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="permanent_employees" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="scope_1" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="scope_2_location" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="scope_2_market" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="scope_3" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_1" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_2" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_3" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_4" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_5" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_6" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_7" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_8" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_9" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_10" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_11" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_12" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_13" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_14" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_15" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_scope_1" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_scope_1_loction" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensityscope_2_market" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_scope_3" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_scope_12" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intensity_scope_123" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="activity_level" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="data_source_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="disclosure_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="data_source" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="industry_codes" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="code_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_website" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_activities" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="revenue_unit_of_measure_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="emissions_unit_of_measure_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="emission_intensity_unit_of_measure_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="activitylevel_unit_of_measure_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- Create the sequence for the primary key -->
+    <changeSet id="20240612100501-3" author="bacutidev">
+        <createSequence sequenceName="company_public_emission_id_seq"
+                        startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <!-- Set the default value of the id column to use the sequence -->
+    <changeSet id="20240612100501-4" author="bacutidev">
+        <addDefaultValue tableName="company_public_emission" columnName="id"
+                         defaultValueSequenceNext="company_public_emission_id_seq"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity UnitOfMeasure.
+    -->
+    <changeSet id="20240612100520-1" author="bacutidev">
+        <createTable tableName="unit_of_measure">
+            <column name="id" type="bigint" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="isBase" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="key" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="value" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <!-- -needle-liquibase-add-column -  will add columns here -->
+        </createTable>
+    </changeSet>
+    <changeSet author="bacutidev" id="20240612100520-2">
+        <insert tableName="unit_of_measure">
+            <column name="id" value="1"/>
+            <column name="name" value="Weight"/>
+            <column name="key" value="Kilogram"/>
+            <column name="value" value="Kg"/>
+            <column name="created_by" value="bacutiadmin" />
+        </insert>
+        <insert tableName="unit_of_measure">
+            <column name="id" value="2"/>
+            <column name="name" value="Volume"/>
+            <column name="key" value="Liter"/>
+            <column name="value" value="L"/>
+            <column name="created_by" value="bacutiadmin" />
+        </insert>
+        <insert tableName="unit_of_measure">
+            <column name="id" value="3"/>
+            <column name="name" value="Length"/>
+            <column name="key" value="meter"/>
+            <column name="value" value="m"/>
+            <column name="created_by" value="bacutiadmin" />
+        </insert>
+        <insert tableName="unit_of_measure">
+            <column name="id" value="4"/>
+            <column name="name" value="Temperature"/>
+            <column name="key" value="kelvin"/>
+            <column name="value" value="k"/>
+            <column name="created_by" value="bacutiadmin" />
+        </insert>
+        <insert tableName="unit_of_measure">
+            <column name="id" value="5"/>
+            <column name="name" value="Frequency"/>
+            <column name="key" value="hertz"/>
+            <column name="value" value="Hz"/>
+            <column name="created_by" value="bacutiadmin" />
+        </insert>
+        <insert tableName="unit_of_measure">
+            <column name="id" value="6"/>
+            <column name="name" value="amount of substance"/>
+            <column name="key" value="Mole"/>
+            <column name="value" value="mol"/>
+            <column name="created_by" value="bacutiadmin" />
+        </insert>
+    </changeSet>
+    <!-- -needle-liquibase-add-changeset -  will add changesets here -->
+</databaseChangeLog>
