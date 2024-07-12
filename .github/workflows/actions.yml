@@ -47,7 +47,7 @@ jobs:
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Upload artifact to AWS S3
-        run: aws s3 cp target/*.jar s3://bac-utils/build-artifacts/
+        run: aws s3 cp target/upload-service-0.0.1-SNAPSHOT.jar s3://bac-utils/build-artifacts/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -72,7 +72,7 @@ jobs:
       - name: Download artifacts from AWS S3
         run: |
           mkdir -p target
-          aws s3 cp s3://bac-utils/build-artifacts/ target/
+          aws s3 cp s3://bac-utils/build-artifacts/upload-service-0.0.1-SNAPSHOT.jar target/
           ls -l target
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
