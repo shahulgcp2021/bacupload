@@ -40,7 +40,7 @@ jobs:
           maven-version: 3.9.6
 
       - name: Build with Maven
-        run: mvn clean install -Dmaven.test.skip=true
+        run: mvn package -Dmaven.test.skip
 
       - name: Set commit_id output
         id: commit
@@ -69,12 +69,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Download artifact from AWS S3
-        run: aws s3 cp s3://bac-utils/build-artifacts/*.jar ./target/
+      - name: Download artifacts from AWS S3
+        run: |
+          mkdir -p target
+          aws s3 cp s3://bac-utils/build-artifacts/ target/ --recursive
+          ls -l target
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1  # Replace with your AWS region
+          AWS_DEFAULT_REGION: us-east-1
+
 
       - name: Docker build
         run: docker build --no-cache -t ${{ env.SERVICE_NAME }} .
